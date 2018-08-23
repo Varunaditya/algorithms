@@ -8,12 +8,10 @@ int maxPairs(vector<long>& numbers){
 	int N = numbers.size();
 	long max1 = numbers[0];
 	long max2 = numbers[1];
-	long max3 = numbers[(N/2)];
-	long max4 = numbers[(N/2)+1];
-	long superMax1 = 0;
-	long superMax2 = 0;
-	// traversing the first sequence; ranging from 2 to the value of N/2.
-	for(int i = 2; i < N/2; i++){
+	// traversing the vector; ranging from 2 to the value of N.
+	for(int i = 2; i < N; i++){
+		// max1 would be swapped only with the new number if the previous value of max1 is smaller than max2 and the  new number.
+		//this is how we avoid swapping the second largest number with the largest number. 
 		if((numbers[i] > max1) && (max1 < max2)){
 			max1 = numbers[i];
 		}
@@ -21,29 +19,7 @@ int maxPairs(vector<long>& numbers){
 			max2 = numbers[i];
 		}
 	}
-	// traversing the second sequence; ranging from N/2+2 to the value of N.
-	for(int i = N/2+2; i < N; i++){
-		if((numbers[i] > max3) && (max3 < max4)){
-			max3 = numbers[i];
-		}
-		else if(numbers[i] > max4){
-			max4 = numbers[i];
-		}
-	}
-	//assigning the max values from the two sequences to a new vector.
-	vector<long> maxNumbers = {max1, max2, max3, max4};
-	superMax1 = maxNumbers[0];
-	superMax2 = maxNumbers[1];
-
-	for(int i = 2; i < 4; i++){
-		if((maxNumbers[i] > superMax1) && (superMax1 < superMax2)){
-			superMax1 = maxNumbers[i];
-		}
-		else if(maxNumbers[i] > superMax2){
-			superMax2 = maxNumbers[i];
-		}
-	}
-	cout << (superMax1*superMax2) << endl;
+	cout << (max1*max2) << endl;
 	return 0;
 }
 
