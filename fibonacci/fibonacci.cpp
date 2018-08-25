@@ -1,6 +1,6 @@
 //A program that genrates a fibinacci series till a given number without using recursion. The basic idea is to store
 // all the calculations in a vector and just accesing the previous two numbers when required.
-// Complexity: O(n^2)
+// Complexity: O(n)
 //Author: Varunaditya Jadwal | Thursday 08.23.2018 1757 HRS
 
 #include<iostream>
