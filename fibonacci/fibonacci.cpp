@@ -1,4 +1,4 @@
-//A program that genrates a fibinacci series till a given number without using recursion. The basic idea is to store
+//A program that genrates a fibinacci series till a given number without using recursion (dynamic programming). The basic idea is to store
 // all the calculations in a vector and just accesing the previous two numbers when required.
 // Complexity: O(n)
 //Author: Varunaditya Jadwal | Thursday 08.23.2018 1757 HRS
@@ -18,23 +18,16 @@ vector<int> fibonacci(vector<int> series ,int N){
 
 int main(){
 	int N; cin >> N;
-	vector<int> series;
-	//assigning the first two elements of the vector as 0 and 1 as the first two numbers in the fibonacci series.
-	series.push_back(0);
-	series.push_back(1);
+	vector<int> series = {0,1};
 	if(N == 0){
-		return 0;
+		cout << 0;
 	}
 	else if(N == 1){
-		return 1;
+		cout << 1;
 	}
 	else if(N > 1){
 		 series = fibonacci(series, N);
-		 int vecSize = series.size();
-		 for(int i = 0; i < vecSize; i++){
-		 	cout << series[i] << " ";
-		 }
-		 cout << endl;
+		 cout << series.back() << endl;
 	}
 
 	return 0;
