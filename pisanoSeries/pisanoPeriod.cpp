@@ -1,3 +1,7 @@
+// A program that calculates the pisano period of a given number
+// Author: Varunaditya Jadwal
+// Complexity: O(N + M^2)
+
 #include<iostream>
 #include<vector>
 using namespace std;
