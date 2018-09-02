@@ -1,13 +1,18 @@
+// A program that sorts a given set of numbers using the merge sort algorithm.
+// Author: Varunaditya Jadwal
+// Complexity: O(nlogn)
+
 #include<iostream>
 #include<vector>
 using namespace std;
 
-void merge(vector<int> &numbers,vector<int> &sortedList, int low, int high){
-	int mid = (low + high) / 2;
-	int index = low;
-	int left = low;
-	int right = mid + 1;
-	while (left <= mid && right <= high){
+// function that merges the sorted lists
+void merge(vector<int> &numbers, vector<int> &sortedList, int leftStart, int rightEnd){
+	int middle = (leftStart + rightEnd) / 2;
+	int index = leftStart;
+	int left = leftStart;
+	int right = (middle + 1);
+	while(left <= middle && right <= rightEnd){
 		if(numbers[left] < numbers[right]){
 			sortedList[index] = numbers[left];
 			left++;
@@ -18,28 +23,33 @@ void merge(vector<int> &numbers,vector<int> &sortedList, int low, int high){
 		}
 		index++;
 	}
-	while (left <= mid){
+	// Elements from one of the two halves would not have been added in the new sorted list.
+	// This while loop makes sure that the remaining elements gets copied as well.
+	while(left <= middle){
 		sortedList[index] = numbers[left];
 		left++;
 		index++;
 	}
-	while (right <= high){
+	while(right <= rightEnd){
 		sortedList[index] = numbers[right];
 		right++;
 		index++;
 	}
-	for(int i = low; i < index; i++){
+	// since the program uses recursion, it is better to copy the sorted elemnets to the original vector
+	// as soon as tthe operation is completed
+	for(int i = leftStart; i < index; i++){
 		numbers[i] = sortedList[i];
 	}
-
 }
 
-void mergeSort(vector<int> &numbers,vector<int> &sortedList, int low, int high){
-	if (low < high){
-		int mid = (low + high) / 2;
-		mergeSort(numbers, sortedList, low, mid);
-		mergeSort(numbers, sortedList, mid + 1, high);
-		merge(numbers, sortedList,low, high);
+void mergeSort(vector<int> &numbers, vector<int> &sortedList, int leftStart, int rightEnd){
+	if (leftStart < rightEnd){
+		int middle = (leftStart + rightEnd) / 2;
+		// using recursion to divide the list in two halves and sort them seperately
+		mergeSort(numbers, sortedList, leftStart, middle);
+		mergeSort(numbers, sortedList, middle + 1, rightEnd);
+		// merging the two newly sorted lists
+		merge(numbers, sortedList, leftStart, rightEnd);
 	}
 }
 
@@ -50,9 +60,7 @@ int main(){
 	for(int i = 0; i < N; i++){
 		cin >> numbers[i];
 	}
-	int low = 0;
-	int high = (numbers.size() - 1);
-	mergeSort(numbers, sortedList, low, high);
+	mergeSort(numbers, sortedList, 0, N - 1);
 	for(auto i : numbers){
 		cout << i << " ";
 	}
