@@ -14,7 +14,6 @@ bool isPalindrome(long N){
 		reversedNumber = (reversedNumber * 10) + (N % 10);
 		N /= 10;
 	}
-	// cout << N << " " << reversedNumber << endl;
 	if (N == reversedNumber || N == (reversedNumber/10)){
 		return true;
 	}
