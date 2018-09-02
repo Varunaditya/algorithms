@@ -1,4 +1,5 @@
 // A program that uses the given numbers to return indices of the two numbers such that they add up to a specific target.
+// It traverses through all the numbers and insert a key pair of the number itself and it's index in a hash table.
 // Author: Varunaditya Jadwal
 // Complexity: O(n)
 
