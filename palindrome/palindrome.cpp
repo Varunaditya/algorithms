@@ -6,7 +6,10 @@
 using namespace std;
 
 bool isPalindrome(long N){
-	if (N <= 0){
+	if (N < 0){
+		return false;
+	}
+	if (N == 0 || (N % 10 == 0 && N != 0)){
 		return false;
 	}
 	long reversedNumber = 0;
